@@ -1,0 +1,20 @@
+.login-wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-image: url('src/assets/office_muenchen.jpg')
+}
+
+.login-sidebar {
+  grid-column: 1;
+  background-color: rgba(255, 255, 255, 0.98);
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.login {
+  grid-row: 3 / 5;
+}

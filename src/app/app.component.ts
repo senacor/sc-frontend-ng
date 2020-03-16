@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
 
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  `,
 })
 export class AppComponent {
-  title = 'sc-frontend-angular';
+  constructor(
+    private translateService: TranslateService,
+  ) {
+    translateService.setDefaultLang('de');
+    translateService.use('de');
+  }
 }
