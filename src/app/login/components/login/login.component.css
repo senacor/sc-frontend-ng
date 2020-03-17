@@ -1,7 +1,7 @@
 .login-wrapper {
   height: 100vh;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: [sidebar-col] 33% [background-img-col] 66%;
   overflow: hidden;
   background-position: center;
   background-size: cover;
@@ -9,12 +9,12 @@
 }
 
 .login-sidebar {
-  grid-column: 1;
+  grid-column: sidebar-col / background-img-col;
   background-color: rgba(255, 255, 255, 0.98);
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: 33% [login-start] 33% [login-end] 33%;
 }
 
 .login {
-  grid-row: 3 / 5;
+  grid-row: login-start / login-end;
 }
