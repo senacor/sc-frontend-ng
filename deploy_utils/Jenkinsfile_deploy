@@ -1,0 +1,63 @@
+pipeline {
+
+  agent any
+
+  stages {
+    stage('reading config file') {
+      steps {
+        // TODO create ngConfig
+        configFileProvider([configFile(fileId: 'ngConfig', variable: 'configFile')]) {
+          load "${configFile}"
+          script {
+            // loading all variables into single string without Groory 'env.' prefix
+            env.loadedParameters = sh(returnStdout: true, script: "cat ${configFile}").replaceAll("env.", "")
+          }
+        }
+        script {
+          // TODO use of this
+          env.DEPLOY_DIR = env.TARGET_FOLDER
+          // TODO use of this
+          env.FRONTEND_PATH = env.TARGET_FOLDER + "/frontend"
+        }
+        //storing variables into file config.tmp for further use on another machine
+        sh 'echo "' + env.loadedParameters + '" > config.tmp'
+      }
+    }
+
+    stage('Building app') {
+      steps {
+        script {
+          // TODO
+          FRONTEND_VERSION = sh(script: "git log -n 1 --pretty=format:'%H -> %B'", returnStdout: true)
+          FRONTEND_VERSION = FRONTEND_VERSION.replace("\n", " ")
+        }
+        // TODO .env.production is missing ?
+        sh 'echo "NG_APP_FRONTEND_VERSION=' + FRONTEND_VERSION + '" >> .env.production'
+        sh "docker image prune -f"
+        sh "docker build -t npm_build_engine ."
+        sh "docker run npm_build_engine:latest npm run build:prod"
+        // TODO question why this line
+        sh "rm -rf build"
+        // TODO
+        sh "docker cp \$(docker container ls -l -q):/app/build build"
+      }
+    }
+
+    stage('Copying') {
+      steps {
+      // TODO
+        sh "tar cvf build.tar build"
+      }
+    }
+
+    // TODO - here we just want to execute this lcoally
+    stage('running frontend server') {
+      steps {
+        // TODO PROD VM ?
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'PROD VM', transfers: [sshTransfer(cleanRemote: false, sourceFiles: '', remoteDirectory: '', excludes: '', remoteDirectorySDF: false, removePrefix: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
+          execCommand: 'cd ' + env.FRONTEND_PATH + '; mv config.tmp .env; docker-compose -p ' + env.FRONTEND_CONTAINER_NAME + ' down; docker-compose -p ' + env.FRONTEND_CONTAINER_NAME + ' up -d'
+        )], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+      }
+    }
+  }
+}
