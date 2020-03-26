@@ -1,0 +1,16 @@
+div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 40rem;
+    margin: auto;
+}
+
+a {
+    width: 100%;
+    margin-top: 24px;
+    cursor: pointer;
+    text-align: center;
+}

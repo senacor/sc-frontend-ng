@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
-import {LoginEvent} from '../../models/events';
+import { LoginEvent } from '../../models/events';
 
 
 @Component({
@@ -19,7 +19,7 @@ import {LoginEvent} from '../../models/events';
       <input matInput placeholder="{{'login.password' | translate }}" formControlName="password" type="password"/>
     </mat-form-field>
     <!-- Submit button -->
-    <button mat-raised-button class="button" color="primary" type="submit">{{ 'login.login' | translate }}</button>
+    <button mat-raised-button class="button" color="primary" type="submit">{{ 'login.login' | translate | uppercase }}</button>
   </form>
   `,
   styleUrls: ['./login-form.component.css']
