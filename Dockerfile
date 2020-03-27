@@ -5,5 +5,4 @@ WORKDIR /app
 
 RUN npm install
 
-# TODO
 ADD . /app

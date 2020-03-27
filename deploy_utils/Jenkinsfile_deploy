@@ -5,7 +5,6 @@ pipeline {
   stages {
     stage('reading config file') {
       steps {
-        // TODO create ngConfig
         configFileProvider([configFile(fileId: 'ngConfig', variable: 'configFile')]) {
           load "${configFile}"
           script {
@@ -14,47 +13,61 @@ pipeline {
           }
         }
         script {
-          // TODO use of this
           env.DEPLOY_DIR = env.TARGET_FOLDER
-          // TODO use of this
           env.FRONTEND_PATH = env.TARGET_FOLDER + "/frontend"
+          env.BACKEND_URL = env.FRONTEND_URL
         }
         //storing variables into file config.tmp for further use on another machine
         sh 'echo "' + env.loadedParameters + '" > config.tmp'
       }
     }
-
     stage('Building app') {
       steps {
         script {
-          // TODO
           FRONTEND_VERSION = sh(script: "git log -n 1 --pretty=format:'%H -> %B'", returnStdout: true)
           FRONTEND_VERSION = FRONTEND_VERSION.replace("\n", " ")
         }
-        // TODO .env.production is missing ?
-        sh 'echo "NG_APP_FRONTEND_VERSION=' + FRONTEND_VERSION + '" >> .env.production'
+        sh 'printf "NG_APP_API=' + env.BACKEND_URL + '\n " > .env.angular'
+        sh 'echo "NG_APP_FRONTEND_VERSION=' + FRONTEND_VERSION + '" >> .env.angular'
         sh "docker image prune -f"
         sh "docker build -t npm_build_engine ."
         sh "docker run npm_build_engine:latest npm run build:prod"
-        // TODO question why this line
         sh "rm -rf build"
-        // TODO
-        sh "docker cp \$(docker container ls -l -q):/app/build build"
+        sh "docker cp \$(docker container ls -l -q):/app/dist/sc-frontend-angular build"
       }
+      //NOTE: env.BACKEND_URL contains url, that gets queried from frontend
     }
-
     stage('Copying') {
       steps {
-      // TODO
         sh "tar cvf build.tar build"
       }
     }
-
-    // TODO - here we just want to execute this lcoally
+    stage('publishing frontend app to target server') {
+      steps {
+        //copying deploy_utils/docker-compose.yml into target machine with frontend path
+        dir('deploy_utils') {
+          sshPublisher(publishers: [sshPublisherDesc(configName: 'TOOLS VM', execCommand: '', transfers: [sshTransfer(cleanRemote: false, excludes: '', remoteDirectorySDF: false, removePrefix: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
+            remoteDirectory: './' + env.FRONTEND_PATH,
+            sourceFiles: 'docker-compose.yml'
+          )], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        }
+        //1. copying build.tar with frontend containing static files and config.tmp containing env variables into remote machine
+        //2. THEN execute on remote machine: untar the build.tar to get build folder with static content. Remove build.tar on target machine.
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'TOOLS VM', transfers: [sshTransfer(cleanRemote: false, excludes: '', remoteDirectorySDF: false, removePrefix: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
+          execCommand: 'cd ' + env.FRONTEND_PATH + '; tar -xvf build.tar; rm build.tar',
+          remoteDirectory: './' + env.FRONTEND_PATH,
+          sourceFiles: 'build.tar,config.tmp'
+        )], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+      }
+    }
     stage('running frontend server') {
       steps {
-        // TODO PROD VM ?
-        sshPublisher(publishers: [sshPublisherDesc(configName: 'PROD VM', transfers: [sshTransfer(cleanRemote: false, sourceFiles: '', remoteDirectory: '', excludes: '', remoteDirectorySDF: false, removePrefix: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
+        // Execute on remote machine:
+        // 1. rename config.tmp into .env, because docker-compose gets .env file as set of environment variables during compose commands
+        // 2. docker-compose down - kills and destroys the running frontend container, if any
+        // 3. docker-compose up - creates new container and starts it
+        // this will simply triggers frontend server for serving static frontend files
+        sshPublisher(publishers: [sshPublisherDesc(configName: 'TOOLS VM', transfers: [sshTransfer(cleanRemote: false, sourceFiles: '', remoteDirectory: '', excludes: '', remoteDirectorySDF: false, removePrefix: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
           execCommand: 'cd ' + env.FRONTEND_PATH + '; mv config.tmp .env; docker-compose -p ' + env.FRONTEND_CONTAINER_NAME + ' down; docker-compose -p ' + env.FRONTEND_CONTAINER_NAME + ' up -d'
         )], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
       }
