@@ -1,4 +1,4 @@
-FROM node
+FROM trion/ng-cli
 ADD package.json /app/
 
 WORKDIR /app
