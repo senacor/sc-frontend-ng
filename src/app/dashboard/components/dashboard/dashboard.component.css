@@ -1,0 +1,18 @@
+.sidenav {
+    max-width: 270px;
+    width: 270px;
+}
+
+.toolbar {
+    height: 100px;
+    background-color: white;
+}
+
+.userinfo {
+    width: 100%;
+}
+
+.feedback-navbar-item {
+    position: fixed;
+    bottom: 0;
+}

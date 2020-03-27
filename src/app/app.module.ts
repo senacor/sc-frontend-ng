@@ -9,6 +9,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppComponent} from './app.component';
 import {LoginModule} from './login/login.module';
 import {LoginComponent} from './login/components/login/login.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { DashboardComponent } from './dashboard/components/dashboard/dashboard.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -18,6 +20,11 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
     pathMatch: 'full'
   },
   {
@@ -33,6 +40,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     LoginModule,
+    DashboardModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
