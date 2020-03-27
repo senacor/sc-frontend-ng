@@ -3,6 +3,6 @@ ADD package.json /app/
 
 WORKDIR /app
 
-RUN npm install
+RUN npm ci
 
 ADD . /app

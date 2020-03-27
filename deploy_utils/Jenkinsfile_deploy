@@ -30,8 +30,8 @@ pipeline {
         sh 'printf "NG_APP_API=' + env.BACKEND_URL + '\n " > .env.angular'
         sh 'echo "NG_APP_FRONTEND_VERSION=' + FRONTEND_VERSION + '" >> .env.angular'
         sh "docker image prune -f"
-        sh "docker build -t npm_build_engine ."
-        sh "docker run npm_build_engine:latest npm run build:prod"
+        sh "docker build -t ng_scorecard ."
+        sh "docker run ng_scorecard:latest npm run build:prod"
         sh "rm -rf build"
         sh "docker cp \$(docker container ls -l -q):/app/dist/sc-frontend-angular build"
       }
