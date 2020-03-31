@@ -3,7 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-    selector: 'appbar',
+    selector: 'app-appbar',
     template: `
         <mat-toolbar color="primary" class="appbar">
             <button [hidden]="!sidenavToggleButtonVisible" class="toggleButton" mat-icon-button (click)="sidenav.toggle()">
@@ -19,7 +19,7 @@ export class AppbarComponent implements OnInit {
 
     sidenavToggleButtonVisible: boolean;
 
-    constructor(public breakpointObserver: BreakpointObserver) {
+    constructor(private breakpointObserver: BreakpointObserver) {
         breakpointObserver
             .observe('(min-width: 1280px)')
             .subscribe(result => {

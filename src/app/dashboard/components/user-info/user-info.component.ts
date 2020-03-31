@@ -1,7 +1,7 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'userinfo',
+    selector: 'app-user-info',
     template: `
         <div class="userinfo-wrapper">
             <ngx-avatar class="avatar" src="photo" name="{{firstName + ' ' + lastName}}" size=60></ngx-avatar>
@@ -13,8 +13,8 @@ import { OnInit, Component } from '@angular/core';
 export class UserInfoComponent implements OnInit {
 
     photo: string;
-    firstName = "Michaela";
-    lastName = "Mitarbeiterin";
+    @Input() firstName = "Michaela";
+    @Input() lastName = "Mitarbeiterin";
 
     constructor() { }
 

@@ -13,6 +13,7 @@
 }
 
 .feedback-navbar-item {
+    width: 270px;
     position: fixed;
     bottom: 0;
 }

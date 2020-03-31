@@ -1,7 +1,7 @@
 import { OnInit, Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'nav-item',
+    selector: 'app-nav-item',
     template: `
         <a mat-list-item routerLink={{routerLink}}>
             <mat-icon class="icon">{{iconType}}</mat-icon>
