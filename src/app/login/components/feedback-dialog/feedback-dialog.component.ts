@@ -1,7 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { FeedbackEvent } from '../../models/events';
+import { FeedbackService } from '../../services/feedback.service';
+import { FeedbackSuccessDialogComponent } from '../feedback-success-dialog/feedback-success-dialog.component';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Feedback, FeedbackContext } from '../../models/feedback.model';
 
 @Component({
   selector: 'app-feedback-dialog',
@@ -15,7 +19,7 @@ import { FeedbackEvent } from '../../models/events';
           </mat-form-field>
           <mat-form-field appearance="outline">
               <mat-label>{{'feedbackcreatedialog.message' | translate}}</mat-label>
-              <textarea matInput [cdkTextareaAutosize]="false" rows="6" cols="120" formControlName="message"></textarea>
+              <textarea matInput [cdkTextareaAutosize]="false" rows="6" cols="120" formControlName="body"></textarea>
           </mat-form-field>
           <mat-form-field appearance="outline">
               <mat-label>{{'maintenance.email' | translate}}</mat-label>
@@ -35,17 +39,16 @@ import { FeedbackEvent } from '../../models/events';
 })
 export class FeedbackDialogComponent implements OnInit {
 
-  @Output()
-  feedback = new EventEmitter<FeedbackEvent>();
-
   feedbackForm = this.fb.group({
     subject: [''],
-    message: [''],
+    body: [''],
     email: ['']
   });
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private feedbackService: FeedbackService
   ) {
   }
 
@@ -53,6 +56,23 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.feedback.emit(this.feedbackForm.value);
+    let feedback: Feedback;
+    feedback = this.feedbackForm.value;
+    feedback.context = FeedbackContext.BUG;
+
+    this.feedbackService.sendFeedback(feedback).subscribe(
+      response => {
+        if (response.status === 201) {
+          this.dialog.open(FeedbackSuccessDialogComponent);
+        } else {
+          this.dialog.open(ErrorDialogComponent);
+        }
+      },
+      error => {
+        console.error(error);
+        this.dialog.open(ErrorDialogComponent);
+      }
+    );
   }
+
 }
