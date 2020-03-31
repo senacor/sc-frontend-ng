@@ -57,6 +57,12 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+declare global {
+  interface Window {
+    sc_app_backend_version: string;
+  }
+}
+
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
