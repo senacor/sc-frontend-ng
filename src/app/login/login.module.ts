@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -13,6 +12,7 @@ import {LoginComponent} from './components/login/login.component';
 import {LogoComponent} from './components/logo/logo.component';
 import {FeedbackComponent} from './components/feedback/feedback.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,16 +23,17 @@ import {LoginFormComponent} from './components/login-form/login-form.component';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    TranslateModule
+    TranslateModule,
+    RouterModule.forChild([{ path: '', component: LoginComponent }])
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    RouterModule
   ]
 })
 export class LoginModule { }

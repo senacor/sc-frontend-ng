@@ -1,0 +1,8 @@
+.icon {
+    opacity: 0.65;
+    margin-right: 25px;
+}
+
+.active {
+    background-color: rgb(221, 221, 221);
+}
