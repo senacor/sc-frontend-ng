@@ -18,6 +18,7 @@ import { VersionDialogComponent } from './components/version-dialog/version-dial
 import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 import { FeedbackSuccessDialogComponent } from './components/feedback-success-dialog/feedback-success-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { FeedbackFormComponent } from './components/feedback-form/feedback-form.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,11 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
     LoginFormComponent,
     LogoComponent,
     FeedbackComponent,
-    VersionDialogComponent,
     FeedbackDialogComponent,
+    FeedbackFormComponent,
     FeedbackSuccessDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    VersionDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -42,8 +44,10 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
     TranslateModule
   ],
   entryComponents: [
+    FeedbackDialogComponent,
+    FeedbackSuccessDialogComponent,
+    ErrorDialogComponent,
     VersionDialogComponent,
-    FeedbackDialogComponent
   ],
   exports: [
     LoginComponent
