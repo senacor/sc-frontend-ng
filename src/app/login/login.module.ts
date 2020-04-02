@@ -12,7 +12,7 @@ import {LoginComponent} from './components/login/login.component';
 import {LogoComponent} from './components/logo/logo.component';
 import {FeedbackComponent} from './components/feedback/feedback.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
-import { RouterModule } from '@angular/router';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,11 +29,7 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     MatIconModule,
     TranslateModule,
-    RouterModule.forChild([{ path: '', component: LoginComponent }])
-  ],
-  exports: [
-    LoginComponent,
-    RouterModule
+    LoginRoutingModule
   ]
 })
 export class LoginModule { }

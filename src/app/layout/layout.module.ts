@@ -28,9 +28,6 @@ import { LayoutComponent } from './components/layout/layout.component';
     TranslateModule,
     AvatarModule,
     LayoutRoutingModule
-  ],
-  exports: [
-    LayoutComponent
   ]
 })
 export class LayoutModule { }
