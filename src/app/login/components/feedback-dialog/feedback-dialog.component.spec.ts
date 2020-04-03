@@ -19,6 +19,8 @@ import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 describe('FeedbackDialogComponent', () => {
   let fixture: ComponentFixture<FeedbackDialogComponent>;
   let debugElement: DebugElement;
+  let feedbackService: FeedbackService;
+  let dialog: MatDialog;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,14 +35,13 @@ describe('FeedbackDialogComponent', () => {
     fixture = TestBed.createComponent(FeedbackDialogComponent);
     debugElement = fixture.debugElement;
 
+    feedbackService = TestBed.inject(FeedbackService);
+    dialog = TestBed.inject(MatDialog);
   }));
 
   it('"feedback" event should trigger handleSubmit and open FeedbackSuccessDialogComponent', () => {
     const feedback: Feedback = {subject: 'testSubject', body: 'testBody', email: 'test@email.com', context: FeedbackContext.BUG};
     const feedbackFormComponent = fixture.debugElement.query(By.directive(FeedbackFormComponent));
-
-    const feedbackService = TestBed.inject(FeedbackService);
-    const dialog = TestBed.inject(MatDialog);
 
     const dialogSpy: Spy = spyOn(dialog, 'open');
     const feedbackSpy: Spy = spyOn(feedbackService, 'sendFeedback')
@@ -55,9 +56,6 @@ describe('FeedbackDialogComponent', () => {
   it('"feedback" event should trigger handleSubmit and open ErrorDialogComponent', () => {
     const feedback: Feedback = {subject: 'testSubject', body: 'testBody', email: 'test@email.com', context: FeedbackContext.BUG};
     const feedbackFormComponent = fixture.debugElement.query(By.directive(FeedbackFormComponent));
-
-    const feedbackService = TestBed.inject(FeedbackService);
-    const dialog = TestBed.inject(MatDialog);
 
     const dialogSpy: Spy = spyOn(dialog, 'open');
     const feedbackSpy: Spy = spyOn(feedbackService, 'sendFeedback')

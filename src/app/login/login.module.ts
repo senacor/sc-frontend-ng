@@ -43,12 +43,6 @@ import { FeedbackFormComponent } from './components/feedback-form/feedback-form.
     MatDialogModule,
     TranslateModule
   ],
-  entryComponents: [
-    FeedbackDialogComponent,
-    FeedbackSuccessDialogComponent,
-    ErrorDialogComponent,
-    VersionDialogComponent,
-  ],
   exports: [
     LoginComponent
   ]
