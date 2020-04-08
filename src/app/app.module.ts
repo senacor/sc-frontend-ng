@@ -8,6 +8,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
 import { LayoutModule } from './layout/layout.module';
+import { MyScsModule } from './my-scs/my-scs.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function HttpLoaderFactory(http: HttpClient) {

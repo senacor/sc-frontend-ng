@@ -14,6 +14,7 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: 'dashboard', loadChildren: () => import('../dashboard/dashboard.module').then(mod => mod.DashboardModule) },
+            { path: 'myScs', loadChildren: () => import('../my-scs/my-scs.module').then(mod => mod.MyScsModule) },
             { path: 'scDetail', loadChildren: () => import('../scSheet/scSheet.module').then(mod => mod.ScSheetModule) },
             // put here other routings for new modules, for example /mySc, /activeEmployees, /formerEmployees ...
         ]
