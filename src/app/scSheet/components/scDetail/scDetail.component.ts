@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sc-detail',
   template: `
-    <mat-card>
-      <mat-grid-list cols="12" rowHeight="1:2">
-        <mat-grid-tile [colspan]="1">
-          <ngx-avatar class="avatar" src="photo" name="{{'Michaela Mitarbeiterin'}}" size=60></ngx-avatar>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="11">
+    <mat-card class="card">
+      <div class="container">
+        <ngx-avatar textSizeRatio="2" src="photo" name="{{'Michaela Mitarbeiterin'}}" size=40></ngx-avatar>
+        <div class="row">
           <div class="name">
             <p>
-              Michaela Mitarbeiterin
+              Mitarbeiterin, Michaela
             </p>
           </div>
           <div class="info">
@@ -23,8 +21,8 @@ import { Component, OnInit } from '@angular/core';
               Vorgesetzter: Vorgesetzter, Volker; Beurteiler: Vorgesetzter, Volker
             </p>
           </div>
-        </mat-grid-tile>
-      </mat-grid-list>
+        </div>
+      </div>
     </mat-card>
   `,
   styleUrls: ['./scDetail.component.css']

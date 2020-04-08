@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
                 {{ 'dashboard.subdescription' | translate }}
             </p>
         </div>
-        <div>
+        <div class="widget-container">
             <p>cards go here!</p>
         </div>
     `,

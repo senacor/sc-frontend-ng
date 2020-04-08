@@ -1,3 +1,7 @@
+.dashboard-welcome-text {
+    margin: 16px;
+}
+
 .dashboard-welcome-text p {
     letter-spacing: 0.00938em;
     font-size: 1rem;
@@ -8,4 +12,8 @@
 
 .dashboard-welcome-text h1 {
     margin-bottom: -1px;
+}
+
+.widget-container {
+  margin: 16px;
 }
