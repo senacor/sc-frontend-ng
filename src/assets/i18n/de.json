@@ -334,6 +334,7 @@
   "scsheet.score.percentagetext": "Gemäß OTB Erreichungsgrad",
   "scdetailinformation.department": "Abteilung",
   "scdetailinformation.duedate": "Fälligkeit:",
+  "scdetailinformation.start": "Start:",
   "scdetailinformation.classification": "Einstufung:",
   "scdetailinformation.no.variant": "Kein Variant",
   "scdetailinformation.with.pr": "Scorecard mit PR Dimensionen",

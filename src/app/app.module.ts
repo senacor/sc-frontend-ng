@@ -21,7 +21,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    MyScsModule,
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,

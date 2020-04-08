@@ -8,14 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
       <mat-card class="card">
         <div class="card-header">
           <mat-card-title>
-            <div><p>Bewertungszeitraum</p>
+            <div><p>{{'dashboard.timerange' | translate}}</p>
               <p>{{card.periodName}}</p></div>
           </mat-card-title>
         </div>
         <mat-card-content class="card-content">
           <mat-icon aria-hidden="false" class="card-icon">assessment</mat-icon>
-          <p>Start: {{card.createdDate | date:"dd.MM.yyyy"}}</p>
-          <p>Fälligkeit: {{card.deadline | date:"dd.MM.yyyy"}}</p>
+          <p>{{'scdetailinformation.start' | translate}} {{card.createdDate | date:"dd.MM.yyyy"}}</p>
+          <p>{{'scdetailinformation.duedate' | translate}} {{card.deadline | date:"dd.MM.yyyy"}}</p>
         </mat-card-content>
         <div class="card-footer">
           <mat-card-footer class="card-footer-title">{{card.scStatus | mapGeneralStatus | translate}}</mat-card-footer>
