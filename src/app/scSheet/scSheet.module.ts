@@ -6,10 +6,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { AvatarModule } from 'ngx-avatar';
 import { ScDetailComponent } from './components/scDetail/scDetail.component';
 import { ScSheetRoutingModule } from './scSheet-routing.module';
+import { ScSheetComponent } from './components/scSheet/scSheet.component';
 
 @NgModule({
   declarations: [
-    ScDetailComponent
+    ScDetailComponent,
+    ScSheetComponent
   ],
   imports: [
     CommonModule,

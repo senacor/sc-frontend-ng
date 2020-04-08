@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ScDetailComponent } from './components/scDetail/scDetail.component';
+import { ScSheetComponent } from './components/scSheet/scSheet.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ScDetailComponent
+    path: ':id',
+    component: ScSheetComponent
   }
 ];
 
