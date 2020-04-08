@@ -14,11 +14,14 @@ import { Component, OnInit } from '@angular/core';
           </div>
           <div class="info">
             <p>
-              Scorecard ohne PR Dimensionen
+              {{ 'scsheet.sctype.withPR' | translate }}
               <br>
-              Fälligkeit: 23.03.2020, Abteilung: , Einstufung: Expert
+              {{ 'scdetailinformation.duedate' | translate }} 23.03.2020,
+              {{ 'scdetailinformation.department' | translate }} Mocked departement,
+              {{ 'scdetailinformation.classification' | translate }} Mocked classification
               <br>
-              Vorgesetzter: Vorgesetzter, Volker; Beurteiler: Vorgesetzter, Volker
+              {{ 'employeeInfo.supervisor' | translate }}: Vorgesetzter, Volker;
+              {{ 'sc.reviewer' | translate }} Vorgesetzter, Volker
             </p>
           </div>
         </div>
