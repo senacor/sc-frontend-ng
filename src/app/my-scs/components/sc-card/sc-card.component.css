@@ -1,0 +1,84 @@
+.card-container {
+  width: 170px;
+  height: 245px;
+  display: flex;
+  transition: all 0.3s;
+  padding: 16px
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+}
+
+.card {
+  padding: 0px
+}
+
+.card-header {
+  height: 45px;
+  cursor: auto;
+  padding: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  text-align: center;
+  background-color: #EAF0F4;
+}
+
+.card-header p {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.9rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin: 0px
+}
+
+.card-icon {
+  font-size: 4rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  text-align: center;
+  border-top: 1px solid #EAF0F4;
+  padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  border-bottom: 1px solid #EAF0F4;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.card-content p {
+  color: #9B9AA0;
+  font-size: 0.9rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  margin: 0px;
+}
+
+.card-footer {
+  height: 30px;
+  padding: 8px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-footer-title {
+  color: #01A688;
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01071em;
+  cursor: pointer;
+  margin: 0px;
+}
