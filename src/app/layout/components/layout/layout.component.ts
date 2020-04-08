@@ -12,7 +12,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
                 <mat-divider></mat-divider>
                 <mat-nav-list>
                     <app-nav-item iconType="dashboard" routerLink="/dashboard">Dashboard</app-nav-item>
-                    <app-nav-item iconType="assessment" routerLink="/login">Eigene Scorecards</app-nav-item>
+                    <app-nav-item iconType="assessment" routerLink="/myScs">Eigene Scorecards</app-nav-item>
                     <app-nav-item iconType="power_settings_new" routerLink="/login">Abmelden</app-nav-item>
                 </mat-nav-list>
                 <mat-divider></mat-divider>
