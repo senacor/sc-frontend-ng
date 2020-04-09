@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthService } from 'src/app/login/services/auth.service';
 
 @Component({
     selector: 'app-layout',
@@ -13,7 +14,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
                 <mat-nav-list>
                     <app-nav-item iconType="dashboard" routerLink="/dashboard">Dashboard</app-nav-item>
                     <app-nav-item iconType="assessment" routerLink="/myScs">Eigene Scorecards</app-nav-item>
-                    <app-nav-item iconType="power_settings_new" routerLink="/login">Abmelden</app-nav-item>
+                    <app-nav-item iconType="power_settings_new" (click)="logout()" routerLink="/login">Abmelden</app-nav-item>
                 </mat-nav-list>
                 <mat-divider></mat-divider>
                 <mat-nav-list class="feedback-navbar-item">
@@ -35,7 +36,7 @@ export class LayoutComponent implements OnInit {
     sidenavMode: string;
     sidenavOpened: boolean;
 
-    constructor(private breakpointObserver: BreakpointObserver) {
+    constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {
         breakpointObserver
             .observe('(min-width: 1280px)')
             .subscribe(result => {
@@ -54,5 +55,9 @@ export class LayoutComponent implements OnInit {
     activateLargeScreenLayout() {
         this.sidenavMode = 'side';
         this.sidenavOpened = true;
+    }
+
+    logout() {
+      this.authService.logout();
     }
 }
