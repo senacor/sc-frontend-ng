@@ -1,0 +1,27 @@
+.card {
+  padding: 24px
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  padding-left: 34px;
+}
+
+.name p {
+  color: black;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.info p {
+  color: grey;
+  margin: 0;
+  line-height: 1.5;
+}

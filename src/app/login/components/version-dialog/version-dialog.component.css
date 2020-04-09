@@ -1,0 +1,10 @@
+p {
+  padding: 8px;
+  border-radius: 9.6px;
+  background-color: #e0e9ea;
+  color: gray;
+}
+
+button {
+  float: right;
+}

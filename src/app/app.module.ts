@@ -1,30 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
-import {LoginModule} from './login/login.module';
-import {LoginComponent} from './login/components/login/login.component';
+import { LayoutModule } from './layout/layout.module';
+import { MyScsModule } from './my-scs/my-scs.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-
-const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: '/login'
-  }
-];
 
 @NgModule({
   declarations: [
@@ -32,7 +21,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    LoginModule,
+    BrowserAnimationsModule,
+    LayoutModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -41,9 +31,7 @@ const appRoutes: Routes = [
         deps: [HttpClient]
       }
     }),
-    RouterModule.forRoot(
-      appRoutes
-    ),
+    RouterModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

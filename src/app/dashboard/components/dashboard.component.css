@@ -1,0 +1,19 @@
+.dashboard-welcome-text {
+    margin: 16px;
+}
+
+.dashboard-welcome-text p {
+    letter-spacing: 0.00938em;
+    font-size: 1rem;
+    line-height: 2;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.dashboard-welcome-text h1 {
+    margin-bottom: -1px;
+}
+
+.widget-container {
+  margin: 16px;
+}
