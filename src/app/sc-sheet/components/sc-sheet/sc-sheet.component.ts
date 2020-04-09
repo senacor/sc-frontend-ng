@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <app-sc-detail></app-sc-detail>
     <!--other components of ScSheet-->
   `,
-  styleUrls: ['./scSheet.component.css']
+  styleUrls: ['./sc-sheet.component.css']
 })
 export class ScSheetComponent implements OnInit {
 

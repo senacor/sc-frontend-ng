@@ -28,7 +28,7 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </mat-card>
   `,
-  styleUrls: ['./scDetail.component.css']
+  styleUrls: ['./sc-detail.component.css']
 })
 export class ScDetailComponent implements OnInit {
 

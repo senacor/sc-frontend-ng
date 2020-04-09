@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ScSheetComponent } from './components/scSheet/scSheet.component';
+import { ScSheetComponent } from './components/sc-sheet/sc-sheet.component';
 
 const routes: Routes = [
   {
