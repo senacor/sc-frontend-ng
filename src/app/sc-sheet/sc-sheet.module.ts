@@ -6,6 +6,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { ScDetailComponent } from './components/sc-detail/sc-detail.component';
 import { ScSheetRoutingModule } from './sc-sheet-routing.module';
 import { ScSheetComponent } from './components/sc-sheet/sc-sheet.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ScSheetComponent } from './components/sc-sheet/sc-sheet.component';
     TranslateModule,
     MatCardModule,
     AvatarModule,
-    ScSheetRoutingModule
+    ScSheetRoutingModule,
+    MatTabsModule
   ]
 })
 export class ScSheetModule { }
