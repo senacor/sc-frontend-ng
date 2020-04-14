@@ -6,18 +6,31 @@ import { AvatarModule } from 'ngx-avatar';
 import { ScDetailComponent } from './components/sc-detail/sc-detail.component';
 import { ScSheetRoutingModule } from './sc-sheet-routing.module';
 import { ScSheetComponent } from './components/sc-sheet/sc-sheet.component';
+import { ScStatusStepperComponent } from './components/sc-status-stepper/sc-status-stepper.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { DetermineGeneralStatusPipe, MapToHintPipe } from '../../utils/CustomPipes';
 
 @NgModule({
   declarations: [
     ScDetailComponent,
-    ScSheetComponent
+    ScSheetComponent,
+    ScStatusStepperComponent,
+    DetermineGeneralStatusPipe,
+    MapToHintPipe
   ],
   imports: [
     CommonModule,
     TranslateModule,
     MatCardModule,
     AvatarModule,
-    ScSheetRoutingModule
+    ScSheetRoutingModule,
+    MatStepperModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class ScSheetModule { }
