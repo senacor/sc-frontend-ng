@@ -12,7 +12,7 @@ import { mockedResponse } from '../../../../mockdata/myScs';
 export class MyScsComponent implements OnInit {
 
   //TODO: exchange mockedResponse with real service call
-  @Input() cards = mockedResponse.scs;
+  cards = mockedResponse.scs;
   constructor() {
   }
 

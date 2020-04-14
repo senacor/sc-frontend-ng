@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-sc-sheet',
   template: `
     <app-sc-detail></app-sc-detail>
+    <app-sc-status-stepper></app-sc-status-stepper>
     <!--other components of ScSheet-->
   `,
   styleUrls: ['./sc-sheet.component.css']
