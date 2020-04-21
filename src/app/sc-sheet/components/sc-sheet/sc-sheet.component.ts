@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-sc-sheet',
   template: `
     <app-sc-detail></app-sc-detail>
+    <app-buttons-below-sheet></app-buttons-below-sheet>
     <!--other components of ScSheet-->
   `,
   styleUrls: ['./sc-sheet.component.css']
