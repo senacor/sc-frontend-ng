@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginEvent } from '../models/events';
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class AuthService {
   }
 
   login(credentials: LoginEvent): Observable<any> {
+    if (credentials.username === '' || credentials.password === '') {
+      return EMPTY;
+    }
+
     return this.httpClient
       .post(`${environment.backendUrl}/api/v1/oauth2/token`, credentials)
       .pipe(map(response => {
